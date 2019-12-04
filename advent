@@ -1,0 +1,14 @@
+#! /usr/bin/env ruby
+
+require 'matrix'
+
+Dir.glob("lib/*.rb").each do |file|
+  require_relative file
+end
+
+function = "p#{ARGV[0].sub("-", "")}".to_sym
+inputFile = ARGV[1]
+
+input = File.readlines(inputFile)
+
+send(function, input)

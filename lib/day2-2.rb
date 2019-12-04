@@ -1,8 +1,3 @@
-#! /usr/bin/env ruby
-
-input = File.read("./input.txt").split(",")
-input.map!{|i| i.to_i}
-
 def performOp(op, memmory, pointer)
   a = memmory[memmory[pointer]]
   b = memmory[memmory[pointer+1]]
@@ -28,24 +23,28 @@ def runProgram(memmory)
   end
 end
 
-a = 0
-b = 0
-while true
-  a += 1
-  if a > 100
-    a = 0
-    b += 1
-    if b > 100
-      puts "Overflow"
+def p22(input)
+  input = input.first.split(",")
+  input.map!{|i| i.to_i}
+  a = 0
+  b = 0
+  while true
+    a += 1
+    if a > 100
+      a = 0
+      b += 1
+      if b > 100
+        puts "Overflow"
+        exit
+      end
+    end
+    memmory = input.clone
+    memmory[1] = a
+    memmory[2] = b
+    output = runProgram(memmory)
+    if output == 19690720
+      puts "Done: #{a}, #{b}"
       exit
     end
-  end
-  memmory = input.clone
-  memmory[1] = a
-  memmory[2] = b
-  output = runProgram(memmory)
-  if output == 19690720
-    puts "Done: #{a}, #{b}"
-    exit
   end
 end
