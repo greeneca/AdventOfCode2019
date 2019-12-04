@@ -2,19 +2,16 @@ def p41(input)
   values = input.first.split("-")
   valid_passwords = 0
   (values[0].to_i..values[1].to_i).each do |password|
-    last = -1
+    prev = -1
     has_adjacent = false
     all_incrementing = true
     password.to_s.split("").map{|d| d.to_i}.each do |digit|
-      if digit == last
-        has_adjacent = true
-      end
-      if digit >= last
-        last = digit
-      else
+      has_adjacent = has_adjacent || digit == prev
+      if digit < prev
         all_incrementing = false
         break
       end
+      prev = digit
     end
     if has_adjacent and all_incrementing
       valid_passwords += 1
