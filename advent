@@ -1,6 +1,7 @@
 #! /usr/bin/env ruby
 
 require 'matrix'
+require 'byebug'
 
 Dir.glob("lib/*.rb").each do |file|
   require_relative file
@@ -11,4 +12,11 @@ inputFile = ARGV[1]
 
 input = File.readlines(inputFile)
 
+start_time  = Time.now
 send(function, input)
+end_time  = Time.now
+
+duration = (end_time - start_time)*1000
+duration = (duration *100).round / 100.0
+
+puts "Duration: #{duration}ms"
