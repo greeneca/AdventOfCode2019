@@ -7,13 +7,13 @@ Dir.glob("lib/*.rb").each do |file|
   require_relative file
 end
 
-function = "p#{ARGV[0].sub("-", "")}".to_sym
+klass_name = "P#{ARGV[0].sub("-", "")}".to_sym
 inputFile = ARGV[1]
 
 input = File.readlines(inputFile)
-
+problem = Object::const_get(klass_name).new()
 start_time  = Time.now
-send(function, input)
+problem.run(input)
 end_time  = Time.now
 
 duration = (end_time - start_time)*1000
