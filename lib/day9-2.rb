@@ -116,7 +116,7 @@ module P92
       return memmory_location
     end
   end
+end
 
-  class TrueClass; def to_i; return 1; end; end;
-  class FalseClass; def to_i; return 0; end; end;
-  class FalseClass; def to_i; return 0; end; end;
+class TrueClass; def to_i; return 1; end; end;
+class FalseClass; def to_i; return 0; end; end;
